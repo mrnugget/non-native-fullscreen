@@ -45,19 +45,10 @@ class FullScreenHandler {
         
         isAnimating = true
         
-        if let contentViewFrame = window.contentView?.frame, !isInFullscreen {
-            unfsContentFrame = window.convertToScreen(contentViewFrame)
-            unfScreen = window.screen
-        }
-
-        if let screen = NSScreen.main {   // get the screen size
-            let systemBar = window.standardWindowButton(.closeButton)?.superview
-            
-            if isInFullscreen {
-                leaveFullscreen(window: window)
-            } else {
-                enterFullscreen(window: window)
-            }
+        if isInFullscreen {
+            leaveFullscreen(window: window)
+        } else {
+            enterFullscreen(window: window)
         }
     }
     
@@ -87,6 +78,12 @@ class FullScreenHandler {
         
         // Save previous style mask
         previousStyleMask = window.styleMask
+        
+        // Save previous contentViewFrame and screen
+        if let contentViewFrame = window.contentView?.frame {
+            unfsContentFrame = window.convertToScreen(contentViewFrame)
+            unfScreen = window.screen
+        }
         
         // Change presentation style to hide menu bar and dock
         NSApp.presentationOptions = [.autoHideMenuBar, .autoHideDock]
