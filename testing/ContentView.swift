@@ -6,34 +6,10 @@
 //
 
 import SwiftUI
-import Cocoa
-
-extension NSScreen {
-  /// Height of the camera housing on this screen if this screen has an embedded camera.
-  var cameraHousingHeight: CGFloat? {
-    if #available(macOS 12.0, *) {
-      return safeAreaInsets.top == 0.0 ? nil : safeAreaInsets.top
-    } else {
-      return nil
-    }
-  }
-}
-
-class MainWindow: NSWindow {
-  var forceKeyAndMain = false
-
-  override var canBecomeKey: Bool {
-    forceKeyAndMain ? true : super.canBecomeKey
-  }
-  
-  override var canBecomeMain: Bool {
-    forceKeyAndMain ? true : super.canBecomeMain
-  }
-}
 
 class FullScreenHandler {
-    var unfScreen: NSScreen?
-    var unfsContentFrame: NSRect?
+    var previousScreen: NSScreen?
+    var previousContentFrame: NSRect?
     var previousStyleMask: NSWindow.StyleMask = [.titled, .closable, .miniaturizable, .resizable]
     var isInFullscreen: Bool = false
     var isAnimating: Bool = false
@@ -56,11 +32,15 @@ class FullScreenHandler {
         guard let screen = window.screen  else { return }
         guard let systemBar = window.standardWindowButton(.closeButton)?.superview else { return }
         
-        print("removing fullscreen")
-        window.styleMask = [.titled, .closable, .miniaturizable, .resizable]
+        // Restore previous style
+        window.styleMask = previousStyleMask
         window.titlebarAppearsTransparent = false
-        let newFrame = calculateWindowPosition(window: window, for: screen)
+        window.isMovable = true
+        
+        // Restore previous presentation options
         NSApp.presentationOptions = []
+        
+        let newFrame = calculateWindowPosition(window: window, for: screen)
         window.setFrame(newFrame, display: true)
         
         NSAnimationContext.runAnimationGroup({ (context) -> Void in
@@ -81,8 +61,8 @@ class FullScreenHandler {
         
         // Save previous contentViewFrame and screen
         if let contentViewFrame = window.contentView?.frame {
-            unfsContentFrame = window.convertToScreen(contentViewFrame)
-            unfScreen = window.screen
+            previousContentFrame = window.convertToScreen(contentViewFrame)
+            previousScreen = window.screen
         }
         
         // Change presentation style to hide menu bar and dock
@@ -113,7 +93,7 @@ class FullScreenHandler {
     }
     
     func calculateWindowPosition(window: NSWindow, for targetScreen: NSScreen) -> NSRect {
-        guard let contentFrame = unfsContentFrame, let screen = unfScreen else {
+        guard let contentFrame = previousContentFrame, let screen = previousScreen else {
             return window.frame
         }
         
@@ -154,8 +134,6 @@ class FullScreenHandler {
         
         return newFrame
     }
-
-    
 }
 
 struct ContentView: View {
