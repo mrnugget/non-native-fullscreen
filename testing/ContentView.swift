@@ -53,7 +53,7 @@ class FullScreenHandler {
     }
     
     func enterFullscreen(window: NSWindow) {
-        guard let screen = window.screen  else { return }
+        guard let screen = NSScreen.main  else { return }
         guard let systemBar = window.standardWindowButton(.closeButton)?.superview else { return }
         
         // Save previous style mask
@@ -73,9 +73,11 @@ class FullScreenHandler {
         // Update these
         window.titlebarAppearsTransparent = true // this removes the border between titlebar and content
         window.isMovable = false // non movable
+        window.makeKeyAndOrderFront(nil)
         
+        window.isOpaque = true
         // Set frame to screen size
-        window.setFrame(CGRect(x: 0, y: 0, width: screen.frame.width, height: screen.frame.height), display: true)
+        window.setFrame(screen.frame, display: true)
         
         // This sets the size of the contentView to the screen size, which should give us full content
         if let view = window.contentView {
@@ -141,11 +143,9 @@ struct ContentView: View {
     @State private var someText: String = ""
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             Color.purple
-                .ignoresSafeArea()
-            
-            
+                .ignoresSafeArea(.all)
             VStack {
                 TextField(
                     "Type something in here to test that typing works",
@@ -157,7 +157,9 @@ struct ContentView: View {
                 }
                 .keyboardShortcut("f", modifiers: [.command])
             }
+            .ignoresSafeArea(.all)
         }
+        .ignoresSafeArea(.all)
     }
     
     func toggle() {

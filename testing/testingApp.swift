@@ -1,17 +1,17 @@
-//
-//  testingApp.swift
-//  testing
-//
-//  Created by Thorsten Ball on 01.07.23.
-//
-
+import AppKit
 import SwiftUI
 
-@main
-struct testingApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+class AppDelegate: NSObject, NSApplicationDelegate {
+
+    private var window: NSWindow!
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 480, height: 270),
+            styleMask: [.miniaturizable, .closable, .resizable, .titled],
+            backing: .buffered, defer: false)
+        window.center()
+        window.contentView = NSHostingView(rootView: ContentView())
+        window.makeKeyAndOrderFront(nil)
     }
 }
