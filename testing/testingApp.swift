@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         window = CustomWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 270),
-            styleMask: [.miniaturizable, .closable, .resizable, .fullSizeContentView],
+            styleMask: [.miniaturizable, .closable, .resizable, .titled],
             backing: .buffered, defer: false)
         window.center()
         window.contentView = NSHostingView(rootView: ContentView())
