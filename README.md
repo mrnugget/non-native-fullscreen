@@ -18,6 +18,7 @@ I can't get it to work so that the window in non-native fullscreen mode has
 
 - no rounded corners. they're tiny, but they're visible
 - that the window covers the place where the notch is on a MacBook
+![screenshot_2023-07-05_20 30 35@2x](https://github.com/mrnugget/non-native-fullscreen/assets/1185253/69422a10-64e7-4b44-b332-885c70c1aef5)
 
 But _technically_ I'm doing what all the others are doing:
 
