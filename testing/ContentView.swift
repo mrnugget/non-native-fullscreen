@@ -29,7 +29,6 @@ class FullScreenHandler {
     }
     
     func leaveFullscreen(window: NSWindow) {
-        print("leave full")
         guard let screen = window.screen  else { return }
         //guard let systemBar = window.standardWindowButton(.closeButton)?.superview else { return }
         
@@ -40,9 +39,7 @@ class FullScreenHandler {
         
         // Restore previous presentation options
         NSApp.presentationOptions = []
-        print("before new frame")
         let newFrame = calculateWindowPosition(window: window, for: screen)
-        print(newFrame)
         window.setFrame(newFrame, display: true)
         
         NSAnimationContext.runAnimationGroup({ (context) -> Void in
@@ -55,7 +52,6 @@ class FullScreenHandler {
     }
     
     func enterFullscreen(window: NSWindow) {
-        print("enter full")
         guard let screen = NSScreen.main  else { return }
         guard let systemBar = window.standardWindowButton(.closeButton)?.superview else { return }
         
@@ -100,7 +96,6 @@ class FullScreenHandler {
     }
     
     func calculateWindowPosition(window: NSWindow, for targetScreen: NSScreen) -> NSRect {
-        print("here")
         guard let contentFrame = previousContentFrame, let screen = previousScreen else {
             return window.frame
         }
