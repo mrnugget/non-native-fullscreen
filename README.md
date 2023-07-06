@@ -1,5 +1,7 @@
 # non-native-fullscreen
 
+**UPDATE**: It's fixed! @jrmoulton fixed it in [PR #1](https://github.com/mrnugget/non-native-fullscreen/pull/1).
+
 This is an experiment, trying to get "non-native fullscreen" working in
 Swift/SwiftUI macOS app.
 
