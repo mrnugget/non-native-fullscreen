@@ -10,7 +10,7 @@ import SwiftUI
 class FullScreenHandler {
     var previousScreen: NSScreen?
     var previousContentFrame: NSRect?
-    var previousStyleMask: NSWindow.StyleMask = [.titled, .closable, .miniaturizable, .resizable]
+    var previousStyleMask: NSWindow.StyleMask = [ .closable, .miniaturizable, .resizable, .titled]
     var isInFullscreen: Bool = false
     var isAnimating: Bool = false
     
@@ -30,7 +30,7 @@ class FullScreenHandler {
     
     func leaveFullscreen(window: NSWindow) {
         guard let screen = window.screen  else { return }
-        guard let systemBar = window.standardWindowButton(.closeButton)?.superview else { return }
+        //guard let systemBar = window.standardWindowButton(.closeButton)?.superview else { return }
         
         // Restore previous style
         window.styleMask = previousStyleMask
@@ -39,13 +39,12 @@ class FullScreenHandler {
         
         // Restore previous presentation options
         NSApp.presentationOptions = []
-        
         let newFrame = calculateWindowPosition(window: window, for: screen)
         window.setFrame(newFrame, display: true)
         
         NSAnimationContext.runAnimationGroup({ (context) -> Void in
             context.duration = 0.0
-            systemBar.animator().alphaValue = 1
+            //systemBar.animator().alphaValue = 1
         }, completionHandler: {
             self.isInFullscreen = false
             self.isAnimating = false
@@ -69,6 +68,8 @@ class FullScreenHandler {
         NSApp.presentationOptions = [.autoHideMenuBar, .autoHideDock]
         // Turn it into borderless window
         window.styleMask.insert(.borderless)
+        window.styleMask.insert(.fullSizeContentView)
+        window.styleMask.remove(.titled)
         
         // Update these
         window.titlebarAppearsTransparent = true // this removes the border between titlebar and content
