@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8586EFE52A55E08D002E0DFB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586EFE42A55E08D002E0DFB /* main.swift */; };
+		8563E03C2A5682EB002925F3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563E03B2A5682EB002925F3 /* main.swift */; };
 		85A95AC72A4FFDE90082DE7B /* testingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A95AC62A4FFDE90082DE7B /* testingApp.swift */; };
 		85A95AC92A4FFDE90082DE7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A95AC82A4FFDE90082DE7B /* ContentView.swift */; };
 		85A95ACB2A4FFDEA0082DE7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A95ACA2A4FFDEA0082DE7B /* Assets.xcassets */; };
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8586EFE42A55E08D002E0DFB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		8563E03B2A5682EB002925F3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		85A95AC32A4FFDE90082DE7B /* testing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A95AC62A4FFDE90082DE7B /* testingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingApp.swift; sourceTree = "<group>"; };
 		85A95AC82A4FFDE90082DE7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 				85A95ACA2A4FFDEA0082DE7B /* Assets.xcassets */,
 				85A95ACF2A4FFDEA0082DE7B /* testing.entitlements */,
 				85A95ACC2A4FFDEA0082DE7B /* Preview Content */,
-				8586EFE42A55E08D002E0DFB /* main.swift */,
+				8563E03B2A5682EB002925F3 /* main.swift */,
 			);
 			path = testing;
 			sourceTree = "<group>";
@@ -264,7 +264,7 @@
 			files = (
 				85A95AC92A4FFDE90082DE7B /* ContentView.swift in Sources */,
 				85A95AC72A4FFDE90082DE7B /* testingApp.swift in Sources */,
-				8586EFE52A55E08D002E0DFB /* main.swift in Sources */,
+				8563E03C2A5682EB002925F3 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
